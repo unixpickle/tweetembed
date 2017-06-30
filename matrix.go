@@ -15,7 +15,7 @@ func CmdMatrix(args []string) {
 	var tweetFile string
 	var tokensFile string
 	var outFile string
-	fs := flag.NewFlagSet("tokens", flag.ExitOnError)
+	fs := flag.NewFlagSet("matrix", flag.ExitOnError)
 	fs.StringVar(&tweetFile, "tweets", "", "CSV file of tweets (empty means stdin)")
 	fs.StringVar(&tokensFile, "tokens", "tokens_out", "vocabulary file of tokens")
 	fs.StringVar(&outFile, "out", "matrix_out", "output file")
