@@ -38,15 +38,20 @@ func CmdMatrix(args []string) {
 		WeightWords: true,
 	}
 
-	var processed int
-	for tweet := range tweets {
-		counter.Add(tokenizer.Tokenize(tweet))
-		processed++
-		if processed%512 == 0 {
-			fmt.Fprintf(os.Stderr, "\rprocessed %d tweets", processed)
+	tokenStream := make(chan []string, 16)
+	go func() {
+		defer close(tokenStream)
+		var processed int
+		for tweet := range tweets {
+			tokenStream <- tokenizer.Tokenize(tweet)
+			processed++
+			if processed%512 == 0 {
+				fmt.Fprintf(os.Stderr, "\rprocessed %d tweets", processed)
+			}
 		}
-	}
-	fmt.Fprintln(os.Stderr, "")
+	}()
+
+	counter.AddAll(tokenStream)
 
 	if err := serializer.SaveAny(outFile, counter.Matrix); err != nil {
 		essentials.Die(err)
