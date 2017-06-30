@@ -53,6 +53,8 @@ func CmdMatrix(args []string) {
 
 	counter.AddAll(tokenStream)
 
+	fmt.Fprintln(os.Stderr)
+
 	if err := serializer.SaveAny(outFile, counter.Matrix); err != nil {
 		essentials.Die(err)
 	}

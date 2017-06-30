@@ -39,7 +39,7 @@ func CmdTokens(args []string) {
 				len(counts))
 		}
 	}
-	fmt.Fprintln(os.Stderr, "")
+	fmt.Fprintln(os.Stderr)
 
 	toks := counts.MostCommon(numTokens)
 	if err := serializer.SaveAny(outFile, toks); err != nil {
