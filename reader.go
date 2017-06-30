@@ -11,7 +11,7 @@ import (
 func ReadTweets(file string) (<-chan string, error) {
 	var ioStream *os.File
 	if file == "" {
-		fmt.Fprintln(os.Stderr, "reading from standard input.")
+		fmt.Fprintln(os.Stderr, "reading tweet CSV from standard input.")
 		ioStream = os.Stdin
 	} else {
 		f, err := os.Open(file)

@@ -9,10 +9,12 @@ import (
 
 var SubCommands = map[string]func([]string){
 	"tokens": CmdTokens,
+	"matrix": CmdMatrix,
 }
 
 var Descriptions = map[string]string{
 	"tokens": "build a vocabulary of tokens",
+	"matrix": "build a co-occurrence matrix",
 }
 
 func main() {
