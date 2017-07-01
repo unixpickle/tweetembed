@@ -8,17 +8,19 @@ import (
 )
 
 var SubCommands = map[string]func([]string){
-	"tokens": CmdTokens,
-	"matrix": CmdMatrix,
-	"train":  CmdTrain,
-	"embed":  CmdEmbed,
+	"tokens":    CmdTokens,
+	"matrix":    CmdMatrix,
+	"train":     CmdTrain,
+	"embed":     CmdEmbed,
+	"neighbors": CmdNeighbors,
 }
 
 var Descriptions = map[string]string{
-	"tokens": "build a vocabulary of tokens",
-	"matrix": "build a co-occurrence matrix",
-	"train":  "train a GloVe model",
-	"embed":  "export an embedding to disk",
+	"tokens":    "build a vocabulary of tokens",
+	"matrix":    "build a co-occurrence matrix",
+	"train":     "train a GloVe model",
+	"embed":     "export an embedding to disk",
+	"neighbors": "get the neighbors of a word",
 }
 
 func main() {
