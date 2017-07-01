@@ -13,6 +13,7 @@ var SubCommands = map[string]func([]string){
 	"train":     CmdTrain,
 	"embed":     CmdEmbed,
 	"neighbors": CmdNeighbors,
+	"entries":   CmdEntries,
 }
 
 var Descriptions = map[string]string{
@@ -21,6 +22,7 @@ var Descriptions = map[string]string{
 	"train":     "train a GloVe model",
 	"embed":     "export an embedding to disk",
 	"neighbors": "get the neighbors of a word",
+	"entries":   "count entries in co-occurrence matrix",
 }
 
 func main() {
