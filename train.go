@@ -28,8 +28,8 @@ func CmdTrain(args []string) {
 	fs.StringVar(&matrixFile, "matrix", "matrix_out", "co-occurrence matrix file")
 	fs.IntVar(&vecSize, "vecsize", 128, "embedding vector size")
 	fs.StringVar(&outFile, "out", "trainer_out", "output file")
-	fs.IntVar(&batchSize, "batch", runtime.GOMAXPROCS(0), "SGD mini-batch size")
-	fs.IntVar(&logInterval, "logint", 512, "iteration log interval")
+	fs.IntVar(&batchSize, "batch", runtime.GOMAXPROCS(0)*32, "SGD mini-batch size")
+	fs.IntVar(&logInterval, "logint", 16, "iteration log interval")
 	fs.Parse(args)
 
 	log.Println("Loading matrix...")
@@ -58,7 +58,7 @@ func CmdTrain(args []string) {
 	for !r.Done() {
 		cost := trainer.Update(batchSize)
 		costSum = ops.Add(costSum, cost)
-		sinceLastLog += batchSize
+		sinceLastLog++
 		if sinceLastLog > logInterval {
 			log.Printf("done %d updates: cost=%f", trainer.NumUpdates,
 				ops.Div(costSum, creator.MakeNumeric(float64(sinceLastLog))))
