@@ -28,14 +28,17 @@ func CmdTrain(args []string) {
 	fs.IntVar(&logInterval, "logint", 512, "iteration log interval")
 	fs.Parse(args)
 
+	log.Println("Loading matrix...")
 	var matrix *glove.SparseMatrix
 	if err := serializer.LoadAny(matrixFile, &matrix); err != nil {
 		essentials.Die(err)
 	}
 
+	log.Println("Loading trainer...")
 	var trainer *glove.Trainer
 	if err := serializer.LoadAny(outFile, &trainer); err != nil {
-		fmt.Fprintln(os.Stderr, "Creating a new trainer...")
+		fmt.Fprintln(os.Stderr, "Load error:", err)
+		log.Println("Creating a new trainer...")
 		trainer = glove.NewTrainer(anyvec32.CurrentCreator(), vecSize, matrix)
 	} else {
 		trainer.Cooccur = matrix
