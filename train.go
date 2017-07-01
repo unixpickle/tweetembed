@@ -37,6 +37,8 @@ func CmdTrain(args []string) {
 	if err := serializer.LoadAny(outFile, &trainer); err != nil {
 		fmt.Fprintln(os.Stderr, "Creating a new trainer...")
 		trainer = glove.NewTrainer(anyvec32.CurrentCreator(), vecSize, matrix)
+	} else {
+		trainer.Cooccur = matrix
 	}
 
 	creator := trainer.Vectors.Data.Creator()
@@ -59,6 +61,15 @@ func CmdTrain(args []string) {
 	}
 
 	log.Println("Saving result...")
+
+	// Don't save extra copy of the huge matrix.
+	n := trainer.Vectors.Rows
+	trainer.Cooccur = glove.NewSparseMatrix(n, n)
+
+	// Try to get GC to let go of the old matrix.
+	matrix = nil
+	runtime.GC()
+
 	if err := serializer.SaveAny(outFile, trainer); err != nil {
 		essentials.Die(err)
 	}
