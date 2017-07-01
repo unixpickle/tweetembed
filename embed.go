@@ -14,10 +14,12 @@ func CmdEmbed(args []string) {
 	var trainerFile string
 	var tokensFile string
 	var outFile string
+	var avg bool
 	fs := flag.NewFlagSet("embed", flag.ExitOnError)
 	fs.StringVar(&tokensFile, "tokens", "tokens_out", "vocabulary file of tokens")
 	fs.StringVar(&trainerFile, "trainer", "trainer_out", "trainer save file")
 	fs.StringVar(&outFile, "out", "embedding_out", "output file")
+	fs.BoolVar(&avg, "avg", false, "average the context and word embeddings")
 	fs.Parse(args)
 
 	var tokens wordembed.TokenSet
@@ -31,7 +33,7 @@ func CmdEmbed(args []string) {
 	}
 
 	log.Println("Creating embedding...")
-	e := trainer.Embedding(tokens, true)
+	e := trainer.Embedding(tokens, avg)
 
 	log.Println("Saving result...")
 	if err := serializer.SaveAny(outFile, e); err != nil {
