@@ -4,8 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"runtime"
+	"time"
 
 	"github.com/unixpickle/anyvec/anyvec32"
 	"github.com/unixpickle/essentials"
@@ -15,6 +17,8 @@ import (
 )
 
 func CmdTrain(args []string) {
+	rand.Seed(time.Now().UnixNano())
+
 	var matrixFile string
 	var vecSize int
 	var outFile string
