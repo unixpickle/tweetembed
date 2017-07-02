@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/unixpickle/essentials"
 )
@@ -50,6 +51,8 @@ func dieHelp() {
 		names = append(names, name)
 		maxLen = essentials.MaxInt(len(name), maxLen)
 	}
+
+	sort.Strings(names)
 
 	for _, name := range names {
 		desc := Descriptions[name]
