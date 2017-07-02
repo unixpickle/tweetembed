@@ -28,7 +28,7 @@ func CmdTrain(args []string) {
 	fs.StringVar(&matrixFile, "matrix", "matrix_out", "co-occurrence matrix file")
 	fs.IntVar(&vecSize, "vecsize", 128, "embedding vector size")
 	fs.StringVar(&outFile, "out", "trainer_out", "output file")
-	fs.IntVar(&batchSize, "batch", runtime.GOMAXPROCS(0)*32, "SGD mini-batch size")
+	fs.IntVar(&batchSize, "batch", runtime.GOMAXPROCS(0)*256, "SGD mini-batch size")
 	fs.IntVar(&logInterval, "logint", 16, "iteration log interval")
 	fs.Parse(args)
 
