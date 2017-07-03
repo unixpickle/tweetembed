@@ -32,7 +32,7 @@ func CmdNeighbors(args []string) {
 		essentials.Die(err)
 	}
 
-	if embedding.Tokens.ID(token) == len(embedding.Tokens) {
+	if !embedding.Tokens.Contains(token) {
 		fmt.Fprintln(os.Stderr, "warning: token is not in vocabulary")
 	}
 

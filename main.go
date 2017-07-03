@@ -15,6 +15,7 @@ var SubCommands = map[string]func([]string){
 	"embed":     CmdEmbed,
 	"neighbors": CmdNeighbors,
 	"entries":   CmdEntries,
+	"analogy":   CmdAnalogy,
 }
 
 var Descriptions = map[string]string{
@@ -24,6 +25,7 @@ var Descriptions = map[string]string{
 	"embed":     "export an embedding to disk",
 	"neighbors": "get the neighbors of a word",
 	"entries":   "count entries in co-occurrence matrix",
+	"analogy":   "find x in 'a is to b as c is to x'",
 }
 
 func main() {
