@@ -9,23 +9,25 @@ import (
 )
 
 var SubCommands = map[string]func([]string){
-	"tokens":    CmdTokens,
-	"matrix":    CmdMatrix,
-	"train":     CmdTrain,
-	"embed":     CmdEmbed,
-	"neighbors": CmdNeighbors,
-	"entries":   CmdEntries,
-	"analogy":   CmdAnalogy,
+	"tokens":      CmdTokens,
+	"matrix":      CmdMatrix,
+	"train":       CmdTrain,
+	"embed":       CmdEmbed,
+	"neighbors":   CmdNeighbors,
+	"entries":     CmdEntries,
+	"analogy":     CmdAnalogy,
+	"correlation": CmdCorrelation,
 }
 
 var Descriptions = map[string]string{
-	"tokens":    "build a vocabulary of tokens",
-	"matrix":    "build a co-occurrence matrix",
-	"train":     "train a GloVe model",
-	"embed":     "export an embedding to disk",
-	"neighbors": "get the neighbors of a word",
-	"entries":   "count entries in co-occurrence matrix",
-	"analogy":   "find x in 'a is to b as c is to x'",
+	"tokens":      "build a vocabulary of tokens",
+	"matrix":      "build a co-occurrence matrix",
+	"train":       "train a GloVe model",
+	"embed":       "export an embedding to disk",
+	"neighbors":   "get the neighbors of a word",
+	"entries":     "count entries in co-occurrence matrix",
+	"analogy":     "find x in 'a is to b as c is to x'",
+	"correlation": "compute correlation between terms",
 }
 
 func main() {
