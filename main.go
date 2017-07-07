@@ -17,6 +17,7 @@ var SubCommands = map[string]func([]string){
 	"entries":     CmdEntries,
 	"analogy":     CmdAnalogy,
 	"correlation": CmdCorrelation,
+	"distances":   CmdDistances,
 }
 
 var Descriptions = map[string]string{
@@ -28,6 +29,7 @@ var Descriptions = map[string]string{
 	"entries":     "count entries in co-occurrence matrix",
 	"analogy":     "find x in 'a is to b as c is to x'",
 	"correlation": "compute correlation between terms",
+	"distances":   "compute a word distance matrix",
 }
 
 func main() {
