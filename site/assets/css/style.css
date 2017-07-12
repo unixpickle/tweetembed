@@ -1,0 +1,37 @@
+body {
+  text-align: center;
+}
+
+.error-message {
+  margin-top: 10px;
+}
+
+.search-form {
+  margin: 10px 0;
+}
+
+.search-results {
+  max-width: 400px;
+  margin: 0 auto;
+  float: none;
+}
+
+.vector-viewer {
+  margin-bottom: 20px;
+}
+
+.word-vector {
+  display: none;
+  max-width: 400px;
+  text-align: left;
+  font-family: monospace;
+  margin-top: 10px;
+}
+
+.word-vector-component:nth-child(even) {
+  color: #777;
+}
+
+.word-vector-showing {
+  display: inline-block;
+}
